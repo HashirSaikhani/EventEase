@@ -1,0 +1,103 @@
+/* src/components/ViewCalendar.css */
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #0e0e0e;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .calendar-page {
+    min-height: 100vh;
+    padding: 60px 20px;
+    background-color: #0e0e0e;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .calendar-header {
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  
+  .calendar-header h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #f1f1f1;
+  }
+  
+  .calendar-header p {
+    color: #aaa;
+    margin-top: 8px;
+    font-size: 1rem;
+  }
+  
+  .btn-back {
+    margin-top: 20px;
+    background-color: transparent;
+    color: #f1f1f1;
+    border: 1px solid #444;
+    padding: 10px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-back:hover {
+    background-color: #1f1f1f;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  
+  .no-events {
+    text-align: center;
+    color: #888;
+    font-size: 1.1rem;
+    margin-top: 80px;
+  }
+  
+  .calendar-list {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+  }
+  
+  .calendar-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.03);
+  }
+  
+  .event-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+  
+  .event-desc {
+    color: #bbb;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+  
+  .event-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.92rem;
+    color: #ccc;
+  }
+  

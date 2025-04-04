@@ -1,0 +1,14 @@
+/* src/components/LandingPage.css */
+.landing-container {
+    height: 100vh;
+    background: linear-gradient(to right, #1c1c1c, #2c3e50);
+    color: white;
+  }
+  
+  .landing-box {
+    background-color: rgba(255, 255, 255, 0.97);
+    color: #333;
+    width: 100%;
+    max-width: 400px;
+  }
+  
