@@ -1,0 +1,59 @@
+/* Universal dark theme for all auth-related pages */
+
+.page-container {
+    min-height: 100vh;
+    background: linear-gradient(to right, #111, #1e1e1e);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+  
+  .auth-box {
+    width: 100%;
+    max-width: 420px;
+    background-color: #1c1c1c;
+    border: 1px solid #2c2c2c;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+    color: #eee;
+  }
+  
+  .auth-box h2 {
+    color: #f2f2f2;
+  }
+  
+  .form-control {
+    background-color: #2a2a2a !important;
+    color: #eee !important;
+    border: 1px solid #444;
+  }
+  
+  .form-label {
+    color: #ccc;
+  }
+  
+  .btn-modern {
+    background-color: #555;
+    color: #f2f2f2;
+    border: none;
+    font-weight: bold;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .btn-modern:hover {
+    background-color: #777;
+    box-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+    color: white;
+  }
+  
+  .link-light {
+    color: #aaa;
+    text-decoration: underline;
+  }
+  
+  .link-light:hover {
+    color: #fff;
+  }
+  
