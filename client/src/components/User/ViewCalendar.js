@@ -1,7 +1,7 @@
 // src/components/ViewCalendar.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/ViewCalendar.css';
+import '../../styles/ViewCalendar.css';
 
 const ViewCalendar = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const ViewCalendar = () => {
       <div className="calendar-header">
         <h2>Event Calendar</h2>
         <p>See all scheduled events in one place</p>
-        <button className="btn-back" onClick={() => navigate('/dashboard')}>Back to Dashboard</button>
+        <button className="btn-back" onClick={() => navigate('/user/dashboard')}>Back to Dashboard</button>
       </div>
 
       {events.length === 0 ? (

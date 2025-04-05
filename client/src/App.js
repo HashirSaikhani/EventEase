@@ -5,23 +5,23 @@ import './styles/AuthPages.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Auth Pages
-import LandingPage from './components/LandingPage';
-import LoginPage from './components/LoginPage';
-import SignupPage from './components/SignupPage';
+import LandingPage from './components/User/LandingPage';
+import LoginPage from './components/User/LoginPage';
+import SignupPage from './components/User/SignupPage';
 
 // User Pages
-import UserDashboard from './components/UserDashboard';
-import CreateEvent from './components/CreateEvent';
-import ManageEvents from './components/ManageEvents';
-import ViewCalendar from './components/ViewCalendar';
-import ViewAnalytics from './components/ViewAnalytics';
+import UserDashboard from './components/User/UserDashboard';
+import UserCreateEvent from './components/User/CreateEvent';
+import UserManageEvents from './components/User/ManageEvents';
+import UserViewCalendar from './components/User/ViewCalendar';
+import UserViewAnalytics from './components/User/ViewAnalytics';
 
 // Admin Pages
 import AdminDashboard from './components/Admin/AdminDashboard';
-import ManageUsers from './components/Admin/ManageUsers';
+import AdminManageUsers from './components/Admin/ManageUsers';
 import AdminManageEvents from './components/Admin/ManageEvents';
 import AdminViewCalendar from './components/Admin/ViewCalendar';
-import ViewFeedback from './components/Admin/ViewFeedback';
+import AdminViewFeedback from './components/Admin/ViewFeedback';
 import AdminAnalytics from './components/Admin/ViewAnalytics';
 
 function App() {
@@ -35,17 +35,17 @@ function App() {
 
         {/* User Routes */}
         <Route path="/user/dashboard" element={<UserDashboard />} />
-        <Route path="/create-event" element={<CreateEvent />} />
-        <Route path="/manage-events" element={<ManageEvents />} />
-        <Route path="/calendar" element={<ViewCalendar />} />
-        <Route path="/analytics" element={<ViewAnalytics />} />
+        <Route path="/user/create-event" element={<UserCreateEvent />} />
+        <Route path="/user/manage-events" element={<UserManageEvents />} />
+        <Route path="/user/calendar" element={<UserViewCalendar />} />
+        <Route path="/user/analytics" element={<UserViewAnalytics />} />
 
         {/* Admin Routes */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/manage-users" element={<ManageUsers />} />
+        <Route path="/admin/manage-users" element={<AdminManageUsers />} />
         <Route path="/admin/manage-events" element={<AdminManageEvents />} />
         <Route path="/admin/calendar" element={<AdminViewCalendar />} />
-        <Route path="/admin/feedback" element={<ViewFeedback />} />
+        <Route path="/admin/feedback" element={<AdminViewFeedback />} />
         <Route path="/admin/analytics" element={<AdminAnalytics />} />
       </Routes>
     </Router>
