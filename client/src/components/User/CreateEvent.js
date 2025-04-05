@@ -1,7 +1,7 @@
 // src/components/CreateEvent.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CreateEvent.css';
+import '../../styles/CreateEvent.css';
 
 const CreateEvent = () => {
   const navigate = useNavigate();
@@ -102,10 +102,10 @@ const CreateEvent = () => {
 
         {/* Below Buttons */}
         <div className="d-flex flex-column gap-2">
-          <button type="button" className="btn btn-dark-theme w-100" onClick={() => navigate('/manage-events')}>
+          <button type="button" className="btn btn-dark-theme w-100" onClick={() => navigate('/user/manage-events')}>
             Manage Events
           </button>
-          <button type="button" className="btn btn-dark-theme w-100" onClick={() => navigate('/dashboard')}>
+          <button type="button" className="btn btn-dark-theme w-100" onClick={() => navigate('/user/dashboard')}>
             Back to Dashboard
           </button>
         </div>

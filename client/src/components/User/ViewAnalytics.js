@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid
 } from 'recharts';
-import './ViewAnalytics.css';
+import '../../styles/ViewAnalytics.css';
 
 const ViewAnalytics = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const ViewAnalytics = () => {
       <div className="analytics-header">
         <h2>Event Analytics</h2>
         <p>Insights based on your scheduled events</p>
-        <button className="btn-dark-theme" onClick={() => navigate('/dashboard')}>Back to Dashboard</button>
+        <button className="btn-dark-theme" onClick={() => navigate('/user/dashboard')}>Back to Dashboard</button>
       </div>
 
       <div className="stats-row">

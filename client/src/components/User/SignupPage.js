@@ -1,7 +1,7 @@
 // src/components/SignupPage.js
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './AuthPages.css';
+import '../../styles/AuthPages.css';
 
 const SignupPage = () => {
   const [form, setForm] = useState({
