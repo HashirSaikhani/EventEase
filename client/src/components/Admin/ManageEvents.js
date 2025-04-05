@@ -1,7 +1,7 @@
 // src/components/ManageEvents.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/ManageEvents.css';
+import '../../styles/ManageEvents.css';
 
 const ManageEvents = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const ManageEvents = () => {
       <h2 className="text-center mb-4">Manage Events</h2>
 
       <div className="text-start mb-4">
-        <button className="btn btn-outline-light" onClick={() => navigate('/dashboard')}>
+        <button className="btn btn-outline-light" onClick={() => navigate('/admin/dashboard')}>
           ← Back to Dashboard
         </button>
       </div>

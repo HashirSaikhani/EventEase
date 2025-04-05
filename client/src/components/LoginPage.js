@@ -1,7 +1,7 @@
 // src/components/LoginPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './AuthPages.css';
+import '../styles/AuthPages.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const LoginPage = () => {
     if (validateLogin()) {
       console.log('Logging in:', { email, password });
       // Simulate login then redirect to dashboard
-      navigate('/dashboard');
+      navigate('/admin/dashboard');
     }
   };
 

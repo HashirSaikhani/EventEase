@@ -1,7 +1,7 @@
 // src/components/CreateEvent.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './CreateEvent.css';
+import '../styles/CreateEvent.css';
 
 const CreateEvent = () => {
   const navigate = useNavigate();
