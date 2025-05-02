@@ -28,7 +28,7 @@ const LoginPage = () => {
     if (validateLogin()) {
       console.log('Logging in:', { email, password });
       // Simulate login then redirect to dashboard
-      navigate('/admin/dashboard');
+      navigate('/user/dashboard');
     }
   };
 
