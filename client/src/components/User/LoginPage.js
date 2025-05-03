@@ -1,4 +1,3 @@
-// src/components/LoginPage.js
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/AuthPages.css';
@@ -23,12 +22,34 @@ const LoginPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateLogin()) {
-      console.log('Logging in:', { email, password });
-      // Simulate login then redirect to dashboard
-      navigate('/user/dashboard');
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          // Save token and user info to localStorage
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+
+          alert('Login successful');
+          navigate('/user/dashboard');
+        } else {
+          alert(data.message || 'Invalid credentials');
+        }
+      } catch (error) {
+        console.error('Login Error:', error);
+        alert('Something went wrong. Please try again.');
+      }
     }
   };
 
