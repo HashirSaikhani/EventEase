@@ -1,6 +1,5 @@
-// src/components/SignupPage.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/AuthPages.css';
 
 const SignupPage = () => {
@@ -12,6 +11,7 @@ const SignupPage = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const validateSignup = () => {
     const newErrors = {};
@@ -34,11 +34,36 @@ const SignupPage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validateSignup()) {
-      console.log('Signing up:', form);
-      // API call can go here
+      try {
+        const res = await fetch('http://localhost:5000/api/auth/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            password: form.password,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          alert(data.message || 'Signup successful');
+          setForm({ name: '', email: '', password: '', confirmPassword: '' });
+          navigate('/login');
+        } else {
+          alert(data.message || 'Signup failed');
+        }
+      } catch (error) {
+        console.error('Signup Error:', error);
+        alert('An error occurred. Please try again.');
+      }
     }
   };
 
