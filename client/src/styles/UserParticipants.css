@@ -1,0 +1,96 @@
+/* src/styles/UserParticipants.css */
+
+.participants-container {
+    min-height: 100vh;
+    background-color: #0e0e0e;
+    color: #fff;
+    padding: 50px 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+  
+  .back-btn {
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: #ffffff20;
+  }
+  
+  .csv-upload {
+    background-color: #1c1c1c;
+    color: #ccc;
+    border: 1px solid #444;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px 0 40px;
+  }
+  
+  .error-text {
+    color: #e74c3c;
+    font-weight: 500;
+    margin-top: 10px;
+  }
+  
+  .participants-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.03);
+  }
+  
+  .participants-table thead {
+    background-color: #222;
+  }
+  
+  .participants-table th,
+  .participants-table td {
+    padding: 16px;
+    border-bottom: 1px solid #333;
+  }
+  
+  .participants-table th {
+    color: #ccc;
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .participants-table td {
+    color: #eee;
+  }
+  
+  .email-btn {
+    margin-top: 25px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .email-btn:hover {
+    background-color: #0069d9;
+    transform: translateY(-2px);
+  }
+  
