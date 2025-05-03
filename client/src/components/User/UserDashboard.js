@@ -32,6 +32,19 @@ const Dashboard = () => {
           <p>See all scheduled events</p>
         </div>
 
+
+        <div className="card clickable" onClick={() => navigate('/user/participants')}>
+          <div className="icon-box">👥</div>
+          <h4>Participants</h4>
+          <p>Upload & manage participants</p>
+        </div>
+
+        <div className="card clickable" onClick={() => navigate('/user/feedback')}>
+          <div className="icon-box">💬</div>
+          <h4>Send Feedback</h4>
+          <p>Submit your feedback or queries</p>
+        </div>
+
         <div className="card clickable" onClick={() => navigate('/user/analytics')}>
           <div className="icon-box">📊</div>
           <h4>View Analytics</h4>

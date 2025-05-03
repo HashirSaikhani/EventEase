@@ -1,0 +1,86 @@
+/* src/styles/UserFeedback.css */
+
+.feedback-container {
+    min-height: 100vh;
+    background-color: #0e0e0e;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 20px 0 30px;
+    text-align: center;
+  }
+  
+  .back-btn {
+    align-self: flex-start;
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    background: none;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: #ffffff20;
+  }
+  
+  .feedback-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  textarea {
+    background-color: #1c1c1c;
+    color: #eee;
+    border: 1px solid #444;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 10px;
+    resize: none;
+    height: 180px;
+    transition: border 0.3s ease;
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .submit-btn {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0069d9;
+    transform: translateY(-2px);
+  }
+  
+  .success-text {
+    font-size: 18px;
+    color: #28a745;
+    font-weight: 600;
+    margin-top: 40px;
+    text-align: center;
+  }
+  

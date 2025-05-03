@@ -15,6 +15,8 @@ import UserCreateEvent from './components/User/CreateEvent';
 import UserManageEvents from './components/User/ManageEvents';
 import UserViewCalendar from './components/User/ViewCalendar';
 import UserViewAnalytics from './components/User/ViewAnalytics';
+import UserParticipants from './components/User/UserParticipants';
+import UserFeedback from './components/User/UserFeedback';
 
 // Admin Pages
 import AdminDashboard from './components/Admin/AdminDashboard';
@@ -39,6 +41,8 @@ function App() {
         <Route path="/user/manage-events" element={<UserManageEvents />} />
         <Route path="/user/calendar" element={<UserViewCalendar />} />
         <Route path="/user/analytics" element={<UserViewAnalytics />} />
+        <Route path="/user/participants" element={<UserParticipants />} />
+        <Route path="/user/feedback" element={<UserFeedback />} />
 
         {/* Admin Routes */}
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
