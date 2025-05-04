@@ -28,6 +28,10 @@ app.use('/api/participants', participantsRoutes);
 const feedbackRoutes = require('./routes/feedbackRoutes');
 app.use('/api/feedback', feedbackRoutes);
 
+const emailRoutes = require('./routes/emailRoutes');
+app.use('/api/email', emailRoutes);
+
+
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,

@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "0d6c907b-c485-4e45-aaa8-48f7534f565b",
+		"name": "EventEase",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29174941"
+	},
+	"item": [
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Admin\",\r\n  \"email\": \"admin@gmail.com\",\r\n  \"password\": \"123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"hashir@gmail.com\",\r\n  \"password\": \"123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Add event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODIyMjM3NzY1NjVkOTFmNWQyMDU1ZDAiLCJpYXQiOjE3NDcwNjc4MDksImV4cCI6MTc0NzY3MjYwOX0.dScZyKrjj6fAMyjxgTbNxNulkg9uhQDJrFvemiyYN_c"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MTY2ODA5MzU1Mjc3ZTkyOTJiNjNmYSIsImlhdCI6MTc0NjM3MjE4NiwiZXhwIjoxNzQ2Mzc1Nzg2fQ.AcoBsib_6MT6JdZbDvvSx-Z4jrrSspzh-Xa907Qa_Cg",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"Team Meeting2\",\r\n  \"description\": \"Discuss project progress\",\r\n  \"date\": \"05/03/2025\",\r\n  \"time\": \"11:00 AM\",\r\n  \"location\": \"Zoom\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/events/add"
+					},
+					"response": []
+				},
+				{
+					"name": "All Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/events/"
+					},
+					"response": []
+				},
+				{
+					"name": "Single Event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/events/68223dc2548dd6c591877ac8"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Event",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"Discuss project remaining progress\",\r\n  \"date\": \"05/03/2025\",\r\n  \"time\": \"11:00 AM\",\r\n  \"location\": \"Zoom\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/events/68223dc2548dd6c591877ac8"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"Discuss project remaining progress\",\r\n  \"date\": \"05/03/2025\",\r\n  \"time\": \"11:00 AM\",\r\n  \"location\": \"Zoom\"\r\n}"
+						},
+						"url": "http://localhost:5000/api/events/68223dc2548dd6c591877ac8"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Participant",
+			"item": [
+				{
+					"name": "Add Participants",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Hashir/Documents/Free/participants.csv"
+								}
+							]
+						},
+						"url": "http://localhost:5000/api/participants/upload/6822243c6565d91f5d2055d8"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Participants",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Hashir/Documents/Free/participants.csv",
+									"disabled": true
+								}
+							]
+						},
+						"url": "http://localhost:5000/api/participants/6822243c6565d91f5d2055d8"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Participant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/api/participants/delete/6822243c6565d91f5d2055d8/6822719942e67909600510fc"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feedback",
+			"item": [
+				{
+					"name": "Add Feedback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"This platform is super duper useful!\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/feedback/add"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Feedbacks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/api/feedback"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email",
+			"item": [
+				{
+					"name": "Send Email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": "http://localhost:5000/api/email/send/6822243c6565d91f5d2055d8"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODIyMjM3NzY1NjVkOTFmNWQyMDU1ZDAiLCJpYXQiOjE3NDcwNjc4MDksImV4cCI6MTc0NzY3MjYwOX0.dScZyKrjj6fAMyjxgTbNxNulkg9uhQDJrFvemiyYN_c"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
