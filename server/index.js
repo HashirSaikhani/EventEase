@@ -12,10 +12,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// ✅ Add test route here
 app.get('/', (req, res) => {
   res.send('API is working ✅');
 });
+
+const eventRoutes = require("./routes/eventRoutes");
+app.use("/api/events", eventRoutes);
 
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
