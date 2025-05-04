@@ -27,18 +27,6 @@ const AdminDashboard = () => {
           <p>View, update, or remove users</p>
         </div>
 
-        <div className="card clickable" onClick={() => navigate('/admin/manage-events')}>
-          <div className="icon-box">🗓️</div>
-          <h4>Manage Events</h4>
-          <p>Edit or delete any event</p>
-        </div>
-
-        <div className="card clickable" onClick={() => navigate('/admin/calendar')}>
-          <div className="icon-box">📆</div>
-          <h4>View Calendar</h4>
-          <p>All scheduled events</p>
-        </div>
-
         <div className="card clickable" onClick={() => navigate('/admin/feedback')}>
           <div className="icon-box">💬</div>
           <h4>View Feedback</h4>

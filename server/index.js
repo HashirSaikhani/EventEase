@@ -31,6 +31,9 @@ app.use('/api/feedback', feedbackRoutes);
 const emailRoutes = require('./routes/emailRoutes');
 app.use('/api/email', emailRoutes);
 
+const userRoutes = require('./routes/userRoutes');
+app.use('/api/users', userRoutes);
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {

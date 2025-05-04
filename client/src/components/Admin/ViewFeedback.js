@@ -8,9 +8,25 @@ const ViewFeedback = () => {
   const [feedbacks, setFeedbacks] = useState([]);
 
   useEffect(() => {
-    const storedFeedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
-    const sorted = storedFeedbacks.sort((a, b) => new Date(b.date) - new Date(a.date)); // Newest first
-    setFeedbacks(sorted);
+    const fetchAllFeedbacks = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const res = await fetch('http://localhost:5000/api/feedback', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) throw new Error('Failed to fetch feedbacks');
+
+        const data = await res.json();
+        setFeedbacks(data);
+      } catch (err) {
+        console.error('Error loading feedbacks:', err.message);
+      }
+    };
+
+    fetchAllFeedbacks();
   }, []);
 
   return (
@@ -28,10 +44,17 @@ const ViewFeedback = () => {
       ) : (
         <div className="feedback-list">
           {feedbacks.map((fb) => (
-            <div className="feedback-card" key={fb.id}>
-              <h4 className="feedback-name">{fb.name} <span className="feedback-email">&lt;{fb.email}&gt;</span></h4>
-              <p className="feedback-message">{fb.message}</p>
-              <div className="feedback-date">🗓 {fb.date}</div>
+            <div className="feedback-card" key={fb._id}>
+              <h4 className="feedback-name">
+                {fb.user?.name || 'Unknown'}{' '}
+                <span className="feedback-email">
+                  &lt;{fb.user?.email || 'No email'}&gt;
+                </span>
+              </h4>
+              <p className="feedback-message">{fb.description}</p> {/* Updated this line */}
+              <div className="feedback-date">
+                🗓 {new Date(fb.createdAt).toLocaleString()}
+              </div>
             </div>
           ))}
         </div>

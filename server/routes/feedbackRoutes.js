@@ -30,9 +30,16 @@ router.post('/add', verifyToken, async (req, res) => {
 // @route   GET /api/feedback
 // @desc    Get all feedback by the logged-in user
 // @access  Private
+// GET /api/feedbacks/all - Admin gets all feedbacks
 router.get('/', verifyToken, async (req, res) => {
   try {
-    const feedbacks = await Feedback.find({ user: req.userId }).sort({ createdAt: -1 });
+
+    // Fetch all feedbacks, populating user details
+    const feedbacks = await Feedback.find({})
+      .populate('user', 'name email')  // Populating user details: name and email
+      .sort({ createdAt: -1 });        // Sorting by newest first (createdAt)
+
+    // Return all feedbacks
     res.status(200).json(feedbacks);
   } catch (error) {
     res.status(500).json({ msg: 'Server error', error });
