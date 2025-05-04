@@ -22,6 +22,9 @@ app.use("/api/events", eventRoutes);
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
+const participantsRoutes = require('./routes/participantRoutes');
+app.use('/api/participants', participantsRoutes);
+
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
