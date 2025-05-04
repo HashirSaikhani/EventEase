@@ -25,6 +25,8 @@ app.use('/api/auth', authRoutes);
 const participantsRoutes = require('./routes/participantRoutes');
 app.use('/api/participants', participantsRoutes);
 
+const feedbackRoutes = require('./routes/feedbackRoutes');
+app.use('/api/feedback', feedbackRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
