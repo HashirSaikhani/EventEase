@@ -1,14 +1,109 @@
-/* src/components/LandingPage.css */
+/* src/styles/LandingPage.css */
 .landing-container {
-    height: 100vh;
-    background: linear-gradient(to right, #1c1c1c, #2c3e50);
-    color: white;
-  }
-  
-  .landing-box {
-    background-color: rgba(255, 255, 255, 0.97);
-    color: #333;
-    width: 100%;
-    max-width: 400px;
-  }
-  
+  height: 100vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('/public/backgrounds/th.jpeg') no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+
+/* Top Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  font-size: 1.2rem;
+}
+
+.brand {
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #eee;
+}
+
+.nav-buttons button {
+  margin-left: 1rem;
+  padding: 0.5rem 1.2rem;
+  background-color: #444;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.nav-buttons button:hover {
+  background-color: #666;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Main Section - Center Aligned */
+.main-content {
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.text-box {
+  max-width: 750px;
+  padding: 3rem;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s;
+}
+
+.text-box:hover {
+  transform: translateY(-5px);
+}
+
+.text-box h1 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+
+.text-box .highlight {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.text-box p {
+  font-size: 1.1rem;
+  color: #ddd;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+.main-buttons {
+  margin-top: 2rem;
+}
+
+.main-buttons button {
+  padding: 0.8rem 1.8rem;
+  margin-right: 1rem;
+  font-size: 1rem;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.main-buttons .secondary {
+  background-color: transparent;
+  border: 1px solid #ccc;
+}
+
+.main-buttons button:hover {
+  background-color: #777;
+  transform: scale(1.05);
+}

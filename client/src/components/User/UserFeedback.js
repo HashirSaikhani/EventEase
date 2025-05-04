@@ -8,11 +8,34 @@ const UserFeedback = () => {
   const [submitted, setSubmitted] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    // API call can go here
+
+    const token = localStorage.getItem('token');
+
+    try {
+      const res = await fetch('http://localhost:5000/api/feedback/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ description: message }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        alert(data.msg || 'Failed to send feedback');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred while submitting feedback');
+    }
   };
+
 
   return (
     <div className="feedback-container">

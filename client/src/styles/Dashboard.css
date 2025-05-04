@@ -105,4 +105,42 @@
     margin-bottom: 15px;
     color: #ccc;
   }
+  .logout-btn-top {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 8px 16px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn-top:hover {
+    background-color: #444;
+  }
+
+
+  .logout-btn-top {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: #2a2a2a;
+    color: #fff;
+    padding: 8px 16px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn-top:hover {
+    background-color: #444;
+  }
   

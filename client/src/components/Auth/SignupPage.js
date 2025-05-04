@@ -9,22 +9,28 @@ const SignupPage = () => {
     password: '',
     confirmPassword: '',
   });
-
   const [errors, setErrors] = useState({});
+  const [popup, setPopup] = useState({ show: false, message: '', type: 'success' });
   const navigate = useNavigate();
 
   const validateSignup = () => {
     const newErrors = {};
 
     if (!form.name.trim()) newErrors.name = 'Name is required';
+
     if (!form.email) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(form.email)) newErrors.email = 'Invalid email format';
+    else if (!/^[\w.%+-]+@gmail\.com$/i.test(form.email))
+      newErrors.email = 'Only valid @gmail.com addresses are allowed';
 
     if (!form.password) newErrors.password = 'Password is required';
-    else if (form.password.length < 6) newErrors.password = 'Password must be at least 6 characters';
+    else if (form.password.length < 8)
+      newErrors.password = 'Password must be at least 8 characters';
+    else if (!/(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])/.test(form.password))
+      newErrors.password = 'Password must include letters, numbers, and a special character';
 
     if (!form.confirmPassword) newErrors.confirmPassword = 'Confirm your password';
-    else if (form.password !== form.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
+    else if (form.password !== form.confirmPassword)
+      newErrors.confirmPassword = 'Passwords do not match';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -54,17 +60,33 @@ const SignupPage = () => {
         const data = await res.json();
 
         if (res.ok) {
-          alert(data.message || 'Signup successful');
-          setForm({ name: '', email: '', password: '', confirmPassword: '' });
-          navigate('/login');
+          setForm({
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+          });
+          setPopup({
+            show: true,
+            message: data.message || 'Account created successfully!',
+            type: 'success',
+          });
         } else {
-          alert(data.message || 'Signup failed');
+          const msg = data.message?.toLowerCase().includes('email')
+            ? 'Email already exists'
+            : (data.message || 'Signup failed');
+          setPopup({ show: true, message: msg, type: 'error' });
         }
       } catch (error) {
         console.error('Signup Error:', error);
-        alert('An error occurred. Please try again.');
+        setPopup({ show: true, message: 'An error occurred. Please try again.', type: 'error' });
       }
     }
+  };
+
+  const closePopup = () => {
+    setPopup({ ...popup, show: false });
+    if (popup.type === 'success') navigate('/login');
   };
 
   return (
@@ -84,6 +106,7 @@ const SignupPage = () => {
             />
             {errors.name && <small className="text-danger">{errors.name}</small>}
           </div>
+
           <div className="mb-3">
             <label className="form-label">Email Address</label>
             <input
@@ -92,10 +115,11 @@ const SignupPage = () => {
               className="form-control"
               value={form.email}
               onChange={handleChange}
-              placeholder="Email"
+              placeholder="Email (must be @gmail.com)"
             />
             {errors.email && <small className="text-danger">{errors.email}</small>}
           </div>
+
           <div className="mb-3">
             <label className="form-label">Password</label>
             <input
@@ -104,10 +128,11 @@ const SignupPage = () => {
               className="form-control"
               value={form.password}
               onChange={handleChange}
-              placeholder="Password"
+              placeholder="At least 8 characters with @#$%"
             />
             {errors.password && <small className="text-danger">{errors.password}</small>}
           </div>
+
           <div className="mb-3">
             <label className="form-label">Confirm Password</label>
             <input
@@ -116,16 +141,35 @@ const SignupPage = () => {
               className="form-control"
               value={form.confirmPassword}
               onChange={handleChange}
-              placeholder="Confirm password"
+              placeholder="Re-type password"
             />
             {errors.confirmPassword && <small className="text-danger">{errors.confirmPassword}</small>}
           </div>
+
           <button type="submit" className="btn btn-modern w-100">Signup</button>
         </form>
-        <p className="text-center mt-3">
-          Already have an account? <Link to="/login" className="link-light">Login</Link>
-        </p>
+
+        <div className="d-flex justify-content-between mt-3">
+          <p className="text-center mb-0">
+            Already have an account? <Link to="/login" className="link-light">Login</Link>
+          </p>
+          <p className="text-center mb-0">
+            <Link to="/" className="link-light">Back to Home</Link>
+          </p>
+        </div>
       </div>
+
+      {popup.show && (
+        <div className="popup-overlay">
+          <div className={`popup-box ${popup.type === 'error' ? 'error' : 'success'}`}>
+            <h3>{popup.type === 'error' ? 'Error' : 'Account Created'}</h3>
+            <p>{popup.message}</p>
+            <button className="btn btn-modern mt-3" onClick={closePopup}>
+              {popup.type === 'success' ? 'Go to Login' : 'Close'}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

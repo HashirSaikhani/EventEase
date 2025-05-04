@@ -1,0 +1,30 @@
+.about-container {
+    background-color: #0e0e0e; /* Deep black */
+    min-height: 100vh;
+    color: #fff;
+    padding: 4rem;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .about-box {
+    max-width: 800px;
+    margin: auto;
+    background-color: rgba(20, 20, 20, 0.95); /* slightly lighter box */
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+  }
+  
+  .about-box h1, .about-box h2 {
+    color: #fff;
+  }
+  
+  .about-box ul {
+    padding-left: 1.5rem;
+    list-style-type: square;
+  }
+  
+  .about-box li {
+    margin-bottom: 0.8rem;
+  }
+  

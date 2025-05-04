@@ -4,10 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/AuthPages.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import ProtectedRoute from './components/Auth/ProtectedRoute'; // ✅ Import ProtectedRoute
+
 // Auth Pages
-import LandingPage from './components/User/LandingPage';
-import LoginPage from './components/User/LoginPage';
-import SignupPage from './components/User/SignupPage';
+import LandingPage from './components/Auth/LandingPage';
+import LoginPage from './components/Auth/LoginPage';
+import SignupPage from './components/Auth/SignupPage';
+import AboutPage from './components/Auth/AboutPage';
 
 // User Pages
 import UserDashboard from './components/User/UserDashboard';
@@ -34,23 +37,115 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/about" element={<AboutPage />} />
 
-        {/* User Routes */}
-        <Route path="/user/dashboard" element={<UserDashboard />} />
-        <Route path="/user/create-event" element={<UserCreateEvent />} />
-        <Route path="/user/manage-events" element={<UserManageEvents />} />
-        <Route path="/user/calendar" element={<UserViewCalendar />} />
-        <Route path="/user/analytics" element={<UserViewAnalytics />} />
-        <Route path="/user/participants" element={<UserParticipants />} />
-        <Route path="/user/feedback" element={<UserFeedback />} />
+        {/* Protected User Routes */}
+        <Route
+          path="/user/dashboard"
+          element={
+            <ProtectedRoute allowedFor="user">
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/create-event"
+          element={
+            <ProtectedRoute allowedFor="user">
+              <UserCreateEvent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/manage-events"
+          element={
+            <ProtectedRoute allowedFor="user">
+              <UserManageEvents />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/calendar"
+          element={
+            <ProtectedRoute allowedFor="user">
+              <UserViewCalendar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/analytics"
+          element={
+            <ProtectedRoute allowedFor="user">
+              <UserViewAnalytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/participants"
+          element={
+            <ProtectedRoute allowedFor="user">
+              <UserParticipants />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/feedback"
+          element={
+            <ProtectedRoute allowedFor="user">
+              <UserFeedback />
+            </ProtectedRoute>
+          }
+        />
 
-        {/* Admin Routes */}
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/manage-users" element={<AdminManageUsers />} />
-        <Route path="/admin/manage-events" element={<AdminManageEvents />} />
-        <Route path="/admin/calendar" element={<AdminViewCalendar />} />
-        <Route path="/admin/feedback" element={<AdminViewFeedback />} />
-        <Route path="/admin/analytics" element={<AdminAnalytics />} />
+        {/* Protected Admin Routes */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute allowedFor="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/manage-users"
+          element={
+            <ProtectedRoute allowedFor="admin">
+              <AdminManageUsers />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/manage-events"
+          element={
+            <ProtectedRoute allowedFor="admin">
+              <AdminManageEvents />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/calendar"
+          element={
+            <ProtectedRoute allowedFor="admin">
+              <AdminViewCalendar />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/feedback"
+          element={
+            <ProtectedRoute allowedFor="admin">
+              <AdminViewFeedback />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/analytics"
+          element={
+            <ProtectedRoute allowedFor="admin">
+              <AdminAnalytics />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );

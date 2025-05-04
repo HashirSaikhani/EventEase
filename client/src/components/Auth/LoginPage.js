@@ -8,15 +8,15 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+  const [popup, setPopup] = useState({ show: false, message: '', type: 'success' });
 
   const validateLogin = () => {
     const newErrors = {};
 
     if (!email) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(email)) newErrors.email = 'Invalid email format';
+    else if (!/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/.test(email)) newErrors.email = 'Invalid email format';
 
     if (!password) newErrors.password = 'Password is required';
-    else if (password.length < 6) newErrors.password = 'Password must be at least 6 characters';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -37,21 +37,31 @@ const LoginPage = () => {
         const data = await res.json();
 
         if (res.ok) {
-          // Save token and user info to localStorage
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-
-          alert('Login successful');
-          navigate('/user/dashboard');
+          setPopup({ show: true, message: 'Login successful', type: 'success' });
         } else {
-          alert(data.message || 'Invalid credentials');
+          setPopup({ show: true, message: data.message || 'Invalid credentials', type: 'error' });
         }
       } catch (error) {
         console.error('Login Error:', error);
-        alert('Something went wrong. Please try again.');
+        setPopup({ show: true, message: 'Something went wrong. Please try again.', type: 'error' });
       }
     }
   };
+
+  const closePopup = () => {
+    setPopup({ ...popup, show: false });
+
+    if (popup.type === 'success') {
+      if (email.toLowerCase() === 'admin@gmail.com') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/user/dashboard');
+      }
+    }
+  };
+
 
   return (
     <div className="page-container">
@@ -85,10 +95,29 @@ const LoginPage = () => {
           <button type="submit" className="btn btn-modern w-100 mt-3">Login</button>
         </form>
 
-        <p className="mt-4">
-          Don’t have an account? <Link to="/signup" className="link-light">Signup</Link>
-        </p>
+        <div className="d-flex justify-content-between mt-4">
+          <p className="mb-0">
+            Don’t have an account? <Link to="/signup" className="link-light">Signup</Link>
+          </p>
+          <p className="mb-0">
+            <Link to="/" className="link-light">Back to Home</Link>
+          </p>
+        </div>
+
       </div>
+
+      {/* ✅ Popup */}
+      {popup.show && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h3>{popup.type === 'error' ? 'Error' : 'Login Successful'}</h3>
+            <p>{popup.message}</p>
+            <button className="btn btn-modern mt-3" onClick={closePopup}>
+              {popup.type === 'success' ? 'Continue' : 'Close'}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

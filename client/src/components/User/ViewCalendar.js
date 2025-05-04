@@ -1,4 +1,3 @@
-// src/components/ViewCalendar.js
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/ViewCalendar.css';
@@ -8,9 +7,35 @@ const ViewCalendar = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const savedEvents = JSON.parse(localStorage.getItem('events')) || [];
-    const sorted = savedEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
-    setEvents(sorted);
+    const fetchEvents = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const res = await fetch('http://localhost:5000/api/events', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.ok) throw new Error('Failed to fetch events');
+
+        const data = await res.json();
+
+        // Sort using correct parsing of MM/DD/YYYY
+        const sorted = data.events.sort((a, b) => {
+          const [am, ad, ay] = a.date.split('/');
+          const [bm, bd, by] = b.date.split('/');
+          const dateA = new Date(`${ay}-${am}-${ad}`);
+          const dateB = new Date(`${by}-${bm}-${bd}`);
+          return dateA - dateB;
+        });
+
+        setEvents(sorted);
+      } catch (err) {
+        console.error('Error loading events:', err.message);
+      }
+    };
+
+    fetchEvents();
   }, []);
 
   return (
@@ -18,7 +43,9 @@ const ViewCalendar = () => {
       <div className="calendar-header">
         <h2>Event Calendar</h2>
         <p>See all scheduled events in one place</p>
-        <button className="btn-back" onClick={() => navigate('/user/dashboard')}>Back to Dashboard</button>
+        <button className="btn-back" onClick={() => navigate('/user/dashboard')}>
+          Back to Dashboard
+        </button>
       </div>
 
       {events.length === 0 ? (
@@ -26,7 +53,7 @@ const ViewCalendar = () => {
       ) : (
         <div className="calendar-list">
           {events.map((event) => (
-            <div className="calendar-card" key={event.id}>
+            <div className="calendar-card" key={event._id}>
               <h4 className="event-title">{event.title}</h4>
               <p className="event-desc">{event.description || 'No description provided.'}</p>
               <div className="event-info">

@@ -1,4 +1,3 @@
-// src/components/CreateEvent.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/CreateEvent.css';
@@ -14,18 +13,87 @@ const CreateEvent = () => {
     location: '',
   });
 
+  const [popup, setPopup] = useState({ show: false, message: '', type: '' });
+
   const handleChange = (e) => {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const formatDate = (inputDate) => {
+    if (!inputDate) return '';
+    const [year, month, day] = inputDate.split('-');
+    return `${month}/${day}/${year}`;
+  };
+
+  const formatTime = (inputTime) => {
+    if (!inputTime) return '';
+    let [hour, minute] = inputTime.split(':');
+    const ampm = inputTime.includes('AM') ? 'AM' : 'PM';
+
+    // Convert hour to integer and adjust for AM/PM
+    let hourNum = parseInt(hour);
+    if (ampm === 'AM' && hourNum === 12) {
+      hourNum = 0; // Midnight case
+    } else if (ampm === 'PM' && hourNum !== 12) {
+      hourNum += 12; // Convert PM to 24-hour format
+    }
+
+    // Pad hour with leading zero if necessary
+    const formattedHour = hourNum.toString().padStart(2, '0');
+
+    return `${formattedHour}:${minute} ${ampm}`;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const events = JSON.parse(localStorage.getItem('events')) || [];
-    const newEvent = { ...event, id: Date.now() };
-    events.push(newEvent);
-    localStorage.setItem('events', JSON.stringify(events));
-    setEvent({ title: '', description: '', date: '', time: '', location: '' });
-    alert('Event created!');
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('You are not authenticated.');
+      return;
+    }
+
+    const payload = {
+      title: event.title,
+      description: event.description,
+      date: formatDate(event.date),
+      time: formatTime(event.time),
+      location: event.location,
+    };
+
+    console.log("Sending event data to server:", payload);
+
+    try {
+      const res = await fetch('http://localhost:5000/api/events/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      console.log("Server response:", data);
+
+      if (res.ok) {
+        setPopup({ show: true, message: 'Event created successfully!', type: 'success' });
+        setEvent({ title: '', description: '', date: '', time: '', location: '' });
+      } else {
+        setPopup({ show: true, message: data.msg || 'Failed to create event.', type: 'error' });
+      }
+    } catch (error) {
+      console.error('Error creating event:', error);
+      setPopup({ show: true, message: 'Something went wrong. Please try again.', type: 'error' });
+    }
+  };
+
+  const closePopup = () => {
+    setPopup({ show: false, message: '', type: '' });
+    // Navigate to Upload Participants page if event creation was successful
+    if (popup.type === 'success') {
+      navigate('/user/manage-events');
+    }
   };
 
   return (
@@ -56,7 +124,7 @@ const CreateEvent = () => {
             rows="3"
             value={event.description}
             onChange={handleChange}
-          />
+          ></textarea>
         </div>
 
         <div className="d-flex gap-3 mb-3">
@@ -97,10 +165,8 @@ const CreateEvent = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <button type="submit" className="btn btn-dark-theme w-100 mb-3">Create Event</button>
 
-        {/* Below Buttons */}
         <div className="d-flex flex-column gap-2">
           <button type="button" className="btn btn-dark-theme w-100" onClick={() => navigate('/user/manage-events')}>
             Manage Events
@@ -110,6 +176,18 @@ const CreateEvent = () => {
           </button>
         </div>
       </form>
+
+      {popup.show && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h3>{popup.type === 'success' ? 'Success' : 'Error'}</h3>
+            <p>{popup.message}</p>
+            <button className="btn btn-modern mt-3" onClick={closePopup}>
+              {popup.type === 'success' ? 'Go to Upload Participants' : 'Retry'}
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

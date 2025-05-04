@@ -26,7 +26,7 @@ const sendEmailWithQR = async (participant, event, qrCodeBase64) => {
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: `"EventEase" <${process.env.EMAIL_USER}>`,
     to: participant.email,
     subject: `You're Invited: ${event.title}`,
     text: `Hello ${participant.name},
