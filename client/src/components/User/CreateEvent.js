@@ -1,4 +1,3 @@
-// src/components/CreateEvent.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/CreateEvent.css';
@@ -14,19 +13,65 @@ const CreateEvent = () => {
     location: '',
   });
 
+  const [popup, setPopup] = useState({ show: false, message: '' });
+
   const handleChange = (e) => {
     setEvent({ ...event, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const events = JSON.parse(localStorage.getItem('events')) || [];
-    const newEvent = { ...event, id: Date.now() };
-    events.push(newEvent);
-    localStorage.setItem('events', JSON.stringify(events));
-    setEvent({ title: '', description: '', date: '', time: '', location: '' });
-    alert('Event created!');
+  const formatDate = (inputDate) => {
+    const [year, month, day] = inputDate.split("-");
+    return `${month}/${day}/${year}`;
   };
+
+  const formatTime = (inputTime) => {
+    const [hour, minute] = inputTime.split(":");
+    const hourNum = parseInt(hour);
+    const ampm = hourNum >= 12 ? "PM" : "AM";
+    const formattedHour = hourNum % 12 === 0 ? 12 : hourNum % 12;
+    return `${formattedHour}:${minute} ${ampm}`;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('You are not authenticated.');
+      return;
+    }
+
+    try {
+      const res = await fetch('http://localhost:5000/api/events/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          title: event.title,
+          description: event.description,
+          date: formatDate(event.date),
+          time: formatTime(event.time),
+          location: event.location,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setPopup({ show: true, message: 'Event created successfully!' });
+        setEvent({ title: '', description: '', date: '', time: '', location: '' });
+      } else {
+        alert(data.message || 'Failed to create event.');
+      }
+    } catch (error) {
+      console.error('Error creating event:', error);
+      alert('Something went wrong. Please try again.');
+    }
+  };
+
+  const closePopup = () => setPopup({ show: false, message: '' });
 
   return (
     <div className="create-container">
@@ -97,10 +142,8 @@ const CreateEvent = () => {
           />
         </div>
 
-        {/* Submit Button */}
         <button type="submit" className="btn btn-dark-theme w-100 mb-3">Create Event</button>
 
-        {/* Below Buttons */}
         <div className="d-flex flex-column gap-2">
           <button type="button" className="btn btn-dark-theme w-100" onClick={() => navigate('/user/manage-events')}>
             Manage Events
@@ -110,6 +153,17 @@ const CreateEvent = () => {
           </button>
         </div>
       </form>
+
+      {/* ✅ Success Popup */}
+      {popup.show && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h3>Success</h3>
+            <p>{popup.message}</p>
+            <button className="btn btn-modern mt-3" onClick={closePopup}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,15 +1,33 @@
-// src/components/Dashboard.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/Dashboard.css';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.name) {
+      setUserName(user.name);
+    } else {
+      setUserName('User');
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
 
   return (
     <div className="dashboard-container">
-      <header className="dashboard-header mb-5 text-center">
-        <h2>Welcome back, <span className="highlight">User</span> 👋</h2>
+      {/* ✅ Absolute Top-Right Logout */}
+      <button className="logout-btn-top" onClick={handleLogout}>Logout</button>
+
+      <header className="dashboard-header text-center mb-4">
+        <h2>Welcome back, <span className="highlight">{userName}</span></h2>
         <p className="muted-text">Manage your events easily from here</p>
       </header>
 
@@ -31,7 +49,6 @@ const Dashboard = () => {
           <h4>View Calendar</h4>
           <p>See all scheduled events</p>
         </div>
-
 
         <div className="card clickable" onClick={() => navigate('/user/participants')}>
           <div className="icon-box">👥</div>

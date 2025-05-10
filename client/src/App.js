@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/User/LandingPage';
 import LoginPage from './components/User/LoginPage';
 import SignupPage from './components/User/SignupPage';
+import AboutPage from './components/User/AboutPage';
 
 // User Pages
 import UserDashboard from './components/User/UserDashboard';
@@ -34,6 +35,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/about" element={<AboutPage />} /> {/* ✅ Added AboutPage Route */}
 
         {/* User Routes */}
         <Route path="/user/dashboard" element={<UserDashboard />} />

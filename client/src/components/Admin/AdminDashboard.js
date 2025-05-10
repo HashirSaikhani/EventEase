@@ -1,13 +1,21 @@
-// src/components/AdminDashboard.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/Dashboard.css'; // Reuse existing styles
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
+
   return (
     <div className="dashboard-container">
+      {/* ✅ Logout button at top-right */}
+      <button className="logout-btn-top" onClick={handleLogout}>Logout</button>
+
       <header className="dashboard-header mb-5 text-center">
         <h2>Welcome, <span className="highlight">Admin</span> 👨‍💼</h2>
         <p className="muted-text">Control everything from your command center</p>

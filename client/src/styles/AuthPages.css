@@ -1,59 +1,110 @@
 /* Universal dark theme for all auth-related pages */
 
 .page-container {
-    min-height: 100vh;
-    background: linear-gradient(to right, #111, #1e1e1e);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-  }
-  
-  .auth-box {
-    width: 100%;
-    max-width: 420px;
-    background-color: #1c1c1c;
-    border: 1px solid #2c2c2c;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
-    color: #eee;
-  }
-  
-  .auth-box h2 {
-    color: #f2f2f2;
-  }
-  
-  .form-control {
-    background-color: #2a2a2a !important;
-    color: #eee !important;
-    border: 1px solid #444;
-  }
-  
-  .form-label {
-    color: #ccc;
-  }
-  
-  .btn-modern {
-    background-color: #555;
-    color: #f2f2f2;
-    border: none;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-  }
-  
-  .btn-modern:hover {
-    background-color: #777;
-    box-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
-    color: white;
-  }
-  
-  .link-light {
-    color: #aaa;
-    text-decoration: underline;
-  }
-  
-  .link-light:hover {
-    color: #fff;
-  }
-  
+  min-height: 100vh;
+  background: linear-gradient(to right, #111, #1e1e1e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 420px;
+  background-color: #1c1c1c;
+  border: 1px solid #2c2c2c;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  color: #eee;
+}
+
+.auth-box h2 {
+  color: #f2f2f2;
+}
+
+.form-label {
+  color: #ccc;
+}
+
+.form-control {
+  background-color: #2a2a2a !important;
+  color: #eee !important;
+  border: 1px solid #444;
+}
+
+.btn-modern {
+  background-color: #555;
+  color: #f2f2f2;
+  border: none;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-modern:hover {
+  background-color: #777;
+  box-shadow: 0 0 10px rgba(200, 200, 200, 0.3);
+  color: white;
+}
+
+.link-light {
+  color: #aaa;
+  text-decoration: underline;
+}
+
+.link-light:hover {
+  color: #fff;
+}
+
+/* Popup Modal Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Popup Content Box */
+.popup-box {
+  background-color: #111;
+  color: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  border: 1px solid #2c2c2c;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  transition: all 0.3s ease;
+}
+
+/* Remove color-coded variants */
+.popup-box.success,
+.popup-box.error {
+  border: 1px solid #2c2c2c;
+}
+
+.popup-box h3 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.popup-box .btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.popup-box .btn:hover {
+  background-color: #555;
+}

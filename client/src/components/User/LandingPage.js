@@ -1,27 +1,41 @@
-// src/components/LandingPage.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/AuthPages.css';
+import '../../styles/LandingPage.css';
 
 const LandingPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="page-container">
-      <div className="auth-box text-center">
-        <h1 className="mb-4 fw-bold">Welcome to <span style={{ color: '#ccc' }}>EventEase</span></h1>
-        <p className="mb-4" style={{ color: '#999' }}>
-          Your ultimate event assistant with elegant style.
-        </p>
-        <div className="d-grid gap-3">
-          <button className="btn btn-modern btn-lg mb-3" onClick={() => navigate('/login')}>
-            Login
-          </button>
-          <button className="btn btn-modern btn-lg" onClick={() => navigate('/signup')}>
-            Signup
-          </button>
+    <div className="landing-container">
+      {/* Top Navbar */}
+      <header className="navbar">
+        <div className="brand">EventEase</div>
+        <div className="nav-buttons">
+          <button onClick={() => navigate('/login')}>Login</button>
+          <button onClick={() => navigate('/signup')}>Signup</button>
         </div>
-      </div>
+      </header>
+
+      {/* Main Section */}
+      <main className="main-content">
+        <div className="text-box">
+          <h1>Welcome to EventEase</h1>
+          <p className="highlight">
+            EventEase — where you can manage all events.
+          </p>
+          <p>
+            EventEase is your ultimate companion for planning, organizing, and managing events effortlessly. Whether you're hosting a corporate conference or a birthday bash, our platform ensures your event runs smoothly from start to finish.
+          </p>
+          <p>
+            Experience intuitive scheduling, participant management, smart alerts, and AI-powered recommendations – all under one seamless dashboard.
+          </p>
+          <div className="main-buttons">
+            <button onClick={() => navigate('/login')}>Get Started</button>
+            <button className="secondary" onClick={() => navigate('/about')}>Learn More</button>
+
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
